@@ -6,3 +6,5 @@ headers = {
 hero_list_file_name = "hero_list.txt"
 sleep_time = 10
 counter_pickle_file_name = "counter.pkl"
+hero_set_file_name = "hero_set.txt"
+translation_file_name = "hero_translation.txt"
