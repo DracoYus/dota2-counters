@@ -1,4 +1,5 @@
 import pickle
+import config
 
 
 def write_list_to_file(list, filename):
@@ -28,4 +29,20 @@ def read_from_pickle(file_name):
 
 
 def name_norm(name):
-    return name.lower().replace("-", " ")
+    return name.lower().replace("-", " ").replace("'", "")
+
+
+def read_translation_from_file(file_name):
+    return_dict = dict()
+    with open(file_name, "r", encoding="utf-8") as f:
+        for line in f:
+            key = line.split(",")[0]
+            value = line.split(",")[1]
+            return_dict[key] = value
+    return return_dict
+
+
+def translate_name(name):
+    global translate_dict
+    translate_dict = read_translation_from_file(config.translation_file_name)
+    return translate_dict[name]
