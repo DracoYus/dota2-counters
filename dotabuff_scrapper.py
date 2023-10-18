@@ -7,194 +7,73 @@ import sys
 import requests
 import time
 from bs4 import BeautifulSoup
+from utils import read_list_from_file, write_to_pickle
+import config
 
-heroes = ["abaddon",
-"alchemist",
-"ancient-apparition",
-"anti-mage",
-"arc-warden",
-"axe",
-"bane",
-"batrider",
-"beastmaster",
-"bloodseeker",
-"bounty-hunter",
-"brewmaster",
-"bristleback",
-"broodmother",
-"centaur-warrunner",
-"chaos-knight",
-"chen",
-"clinkz",
-"clockwerk",
-"crystal-maiden",
-"dark-seer",
-"dark-willow",
-"dawnbreaker",
-"dazzle",
-"death-prophet",
-"disruptor",
-"doom",
-"dragon-knight",
-"drow-ranger",
-"earth-spirit",
-"earthshaker",
-"elder-titan",
-"ember-spirit",
-"enchantress",
-"enigma",
-"faceless-void",
-"grimstroke",
-"gyrocopter",
-"hoodwink",
-"huskar",
-"invoker",
-"io",
-"jakiro",
-"juggernaut",
-"keeper-of-the-light",
-"kunkka",
-"legion-commander",
-"leshrac",
-"lich",
-"lifestealer",
-"lina",
-"lion",
-"lone-druid",
-"luna",
-"lycan",
-"magnus",
-"marci",
-"mars",
-"medusa",
-"meepo",
-"mirana",
-"monkey-king",
-"morphling",
-"naga-siren",
-"natures-prophet",
-"necrophos",
-"night-stalker",
-"nyx-assassin",
-"ogre-magi",
-"omniknight",
-"oracle",
-"outworld-devourer",
-"pangolier",
-"phantom-assassin",
-"phantom-lancer",
-"phoenix",
-"primal-beast",
-"puck",
-"pudge",
-"pugna",
-"queen-of-pain",
-"razor",
-"riki",
-"rubick",
-"sand-king",
-"shadow-demon",
-"shadow-fiend",
-"shadow-shaman",
-"silencer",
-"skywrath-mage",
-"slardar",
-"slark",
-"snapfire",
-"sniper",
-"spectre",
-"spirit-breaker",
-"storm-spirit",
-"sven",
-"techies",
-"templar-assassin",
-"terrorblade",
-"tidehunter",
-"timbersaw",
-"tinker",
-"tiny",
-"treant-protector",
-"troll-warlord",
-"tusk",
-"underlord",
-"undying",
-"ursa",
-"vengeful-spirit",
-"venomancer",
-"viper",
-"visage",
-"void-spirit",
-"warlock",
-"weaver",
-"windranger",
-"winter-wyvern",
-"witch-doctor",
-"wraith-king",
-"zeus"]
+
+heroes = read_list_from_file(config.hero_list_file_name)
 
 counters = []
+
 
 def dotaBuffScrapping(hero):
     # Set the URL you want to webscrape from
     url = "https://www.dotabuff.com/heroes/" + hero + "/counters"
 
     # Connect to the URL. User agent is to prevent the browser to give the 429 response (too many requests)
-    response = requests.get(url, headers = {'User-agent': 'your bot 0.1'})
+    response = requests.get(url, headers=config.headers, proxies=config.proxies)
 
     # Give some time to load the page
-    time.sleep(1)
+    time.sleep(config.sleep_time)
 
     # Parse HTML and save to BeautifulSoup object
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # Find all barcodes on the page
-    heroesOfTr = soup.find_all("tr", limit=11)
-    heroesOfTr.reverse()
-    heroesOfTr = heroesOfTr[:5]
-    heroesOfTr.reverse()
+    countered_by_section = soup.find("section", class_="counter-outline")
+    countered_by_list = countered_by_section.find_all("tr")
 
-    if heroesOfTr is not None:
+    if countered_by_list is not None:
         temp = []
-        for counterHero in heroesOfTr:
-            value = counterHero.find("td").find("a").find("img")['alt']
-            if value == "Nature's Prophet":
-                value = "Natures Prophet"
-            temp.append(value)
+        for counterHero in countered_by_list:
+            td = counterHero.find_all("td")
+            if len(td) >= 1:
+                value = td[1].text
+                temp.append(value)
 
         counters.append({"name": hero, "counters": temp})
 
-def savefile():
-    save_text = open("countersByHero", 'w')
-    save_text.write("[")
-    save_text.write(",".join(str(x) for x in counters))
-    save_text.write("]")
-    save_text.close()
 
-def doLoopThroughHeroes():    
+def doLoopThroughHeroes():
     for hero in heroes:
         print(f"Parsing {hero}...")
         dotaBuffScrapping(hero)
-        time.sleep(1)
-    savefile()
+        time.sleep(config.sleep_time)
+    write_to_pickle(counters, config.counter_pickle_file_name)
+
+
 
 def herofinder(myhero):
     for hero in heroes:
         if hero == myhero:
             dotaBuffScrapping(hero)
-            time.sleep(1)
-            savefile()
+            time.sleep(config.sleep_time)
+            write_to_pickle(counters, config.counter_pickle_file_name)
             return True
     return False
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) == 1:
         doLoopThroughHeroes()
-        print("DotaBuffScrapping Done! Open countersByHero file to check out the results")
+        print(
+            "DotaBuffScrapping Done! Open countersByHero file to check out the results"
+        )
 
     elif len(sys.argv) == 2:
         h = sys.argv[1]
         if herofinder(h):
-                    print(f"DotaBuffScrapping Done! Open countersByHero file to check {h}'s counters")
+            print(
+                f"DotaBuffScrapping Done! Open countersByHero file to check {h}'s counters"
+            )
         else:
             print("Error: Hero Not Found")
 
