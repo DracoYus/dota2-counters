@@ -120,5 +120,5 @@ weaver,编织者
 windranger,风行者
 winter wyvern,寒冬飞龙
 witch doctor,巫医
-wraith king,冥婚大帝
+wraith king,冥魂大帝
 zeus,宙斯
