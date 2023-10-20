@@ -96,7 +96,7 @@ sniper,狙击手
 spectre,幽鬼
 spirit breaker,裂魂人
 storm spirit,风暴之灵
-sven,斯文
+sven,斯温
 techies,工程师
 templar assassin,圣堂刺客
 terrorblade,恐怖利刃
