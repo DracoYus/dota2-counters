@@ -19,9 +19,10 @@ counters = []
 def dotaBuffScrapping(hero):
     # Set the URL you want to webscrape from
     url = "https://www.dotabuff.com/heroes/" + hero + "/counters"
-
+    global session
+    session = requests.Session()
     # Connect to the URL. User agent is to prevent the browser to give the 429 response (too many requests)
-    response = requests.get(url, headers=config.headers, proxies=config.proxies)
+    response = session.get(url, headers=config.headers, proxies=config.proxies)
 
     # Give some time to load the page
     time.sleep(config.sleep_time)
