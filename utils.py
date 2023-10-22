@@ -36,13 +36,29 @@ def read_translation_from_file(file_name):
     return_dict = dict()
     with open(file_name, "r", encoding="utf-8") as f:
         for line in f:
-            key = line.split(",")[0]
-            value = line.split(",")[1]
+            key = line.split(",")[0].strip()
+            value = line.split(",")[1].strip()
             return_dict[key] = value
     return return_dict
 
 
-def translate_name(name):
-    global translate_dict
-    translate_dict = read_translation_from_file(config.translation_file_name)
-    return translate_dict[name]
+def translate_hero(hero):
+    global translate_hero_dict
+    translate_hero_dict = read_translation_from_file(config.translation_hero_file_name)
+    return translate_hero_dict[hero]
+
+
+def translate_item(item):
+    global translate_item_dict
+    translate_item_dict = read_translation_from_file(config.translation_item_file_name)
+    if item in translate_item_dict:
+        return translate_item_dict[item]
+    else:
+        return None
+
+
+def match_norm(match):
+    return int(match.replace(",", ""))
+
+def winrate_norm(winrate):
+    return float(winrate.replace("%", ""))

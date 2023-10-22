@@ -1,0 +1,58 @@
+Apex,极,5
+Arcane Ring,奥术指环,1
+Arcanist's Armor,秘术师铠甲,5
+Ascetic's Cap,简朴短帽,4
+Book of Shadows,暗影邪典,5
+Book of the Dead,冥灵书,5
+Broom Handle,扫帚柄,1
+Bullwhip,凌厉长鞭,2
+Ceremonial Robe,祭礼长袍,3
+Cloak of Flames,火焰斗篷,3
+Cloak,欺诈师斗篷,4
+Dandelion Amulet,蒲公英护符,3
+Defiant Shell,不羁甲壳,3
+Dragon Scale,炎龙之鳞,2
+Duelist Gloves,决斗家手套,1
+Enchanted Quiver,魔力箭袋,3
+Ex Machina,机械之心,5
+Eye of the Vizier,维齐尔之眼,2
+Faded Broach,暗淡胸针,1
+Fairy's Trinket,仙灵饰品,1
+Force Boots,原力鞋,5
+Giant's Ring,巨人之戒,5
+Grove Bow,林野长弓,2
+Gossamer Cape,蛛丝斗篷,2
+Havoc Hammer,浩劫巨锤,4
+Lance of Pursuit,追击之矛,1
+Martyr's Plate,烈士鳞甲,4
+Mind Breaker,智灭,4
+Mirror Shield,神镜盾,5
+Ninja Gear,忍者用具,4
+Occult Bracelet,玄奥手镯,1
+Ogre Seal Totem,食人魔海豹图腾,3
+Orb of Destruction,毁灭灵球,3
+Paladin Sword,骑士剑，3
+Penta-Edged Sword,五锋长剑,4
+Philosopher's Stone,贤者石,2
+Pig Pole,豚杆,1
+Pirate Hat,海盗帽,5
+Psychic Headband,通灵头带,3
+Pupil's Gift,学徒之礼,2
+Quickening Charm,加速护符,3
+Ring of Aquila,天鹰之戒,2
+Seeds of Serenity,宁静种籽,1
+Seer Stone,先哲之石.5
+Spark of Courage,勇气之光,1
+Specialist's Array,行家阵列,2
+Spirit Vessel,法术棱镜,4
+Stormcrafter,风暴宝器,4
+Stygian Desolator,寂灭,5
+Telescope,望远镜,4
+Timeless Relic,永恒遗物,4
+Titan Sliver,巨神残铁,3
+Trickster Cloak,欺诈师斗篷,4
+Trusty Shovel,可靠铁铲,1
+Tumbler's Toy,杂技玩具,1
+Vambrace,臂甲,2
+Vampire Fangs,吸血鬼獠牙,2
+Vindicator's Axe,正义之斧,3
