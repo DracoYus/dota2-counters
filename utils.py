@@ -43,12 +43,16 @@ def read_translation_from_file(file_name):
 
 
 def translate_hero(hero):
+    if not config.translation_switch:
+        return hero
     global translate_hero_dict
     translate_hero_dict = read_translation_from_file(config.translation_hero_file_name)
     return translate_hero_dict[hero]
 
 
 def translate_item(item):
+    if not config.translation_switch:
+        return item
     global translate_item_dict
     translate_item_dict = read_translation_from_file(config.translation_item_file_name)
     if item in translate_item_dict:

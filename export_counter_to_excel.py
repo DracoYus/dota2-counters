@@ -13,6 +13,5 @@ counter_data = {
     "counter5": [item["counters"][4] for item in counter_data],
 }
 df = pd.DataFrame(counter_data)
-if config.translation_switch:
-    df = df.map(lambda name: translate_hero(name_norm(name)))
+df = df.map(lambda name: translate_hero(name_norm(name)))
 df.to_excel(config.counter_excel, index=False)
