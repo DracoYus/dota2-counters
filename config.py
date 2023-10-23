@@ -14,4 +14,5 @@ translation_item_file_name = "buyable_item_translation.txt"
 translation_switch = True
 popular_threshold = 0.2
 minimal_pickrate = 0.05
+counter_excel = "./output/counter.xlsx"
 item_excel = "./output/item.xlsx"

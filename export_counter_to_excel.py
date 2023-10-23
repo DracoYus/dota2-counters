@@ -1,5 +1,5 @@
 import config
-from utils import read_from_pickle, translate_name, name_norm
+from utils import read_from_pickle, translate_hero, name_norm
 import pandas as pd
 
 counter_data = read_from_pickle(config.counter_pickle_file_name)
@@ -14,5 +14,5 @@ counter_data = {
 }
 df = pd.DataFrame(counter_data)
 if config.translation_switch:
-    df = df.applymap(lambda name: translate_name(name_norm(name)))
-df.to_excel("output.xlsx", index=False)
+    df = df.map(lambda name: translate_hero(name_norm(name)))
+df.to_excel(config.counter_excel, index=False)
