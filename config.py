@@ -12,4 +12,6 @@ hero_set_file_name = "hero_set.txt"
 translation_hero_file_name = "hero_translation.txt"
 translation_item_file_name = "buyable_item_translation.txt"
 translation_switch = True
-match_threshold = 0.1
+popular_threshold = 0.2
+minimal_pickrate = 0.05
+item_excel = "./output/item.xlsx"
